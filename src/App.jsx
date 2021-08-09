@@ -1,10 +1,9 @@
 import React from 'react'
+import HomePage from './Pages/HomePage/HomePage';
 
 const App = () => {
     return (
-        <h1>
-           MOVISTIO 
-        </h1>
+        <HomePage/>
     )
 }
 

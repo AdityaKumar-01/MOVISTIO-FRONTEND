@@ -17,3 +17,9 @@
   align-items: center;
   color: rgb(232,236,235);
 }
+.homepage-carousel-container{
+  max-height: 100vh;
+}
+.slideInner___2mfX9 carousel__inner-slide{
+  max-height: 100vh !important;
+}

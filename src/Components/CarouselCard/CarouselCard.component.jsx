@@ -18,7 +18,6 @@ const CarouselCard = ({ id }) => {
       .request(options)
       .then(function (response) {
         setData(response.data);
-        console.log(response.data);
       })
       .catch(function (error) {
         console.error(error);

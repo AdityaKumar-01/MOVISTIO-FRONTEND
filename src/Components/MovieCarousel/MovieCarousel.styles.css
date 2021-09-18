@@ -1,0 +1,8 @@
+.movie-carousel-card{
+    width:20vw;
+    background-color: #FFE142;
+}
+.movie-carousel-card img{
+    width:200px;
+    height:350px;
+}

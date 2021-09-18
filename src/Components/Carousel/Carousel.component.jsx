@@ -12,7 +12,7 @@ const Carousel = () => {
     return (
       <CarouselProvider
         naturalSlideWidth={10}
-        naturalSlideHeight={40}
+        naturalSlideHeight={5}
         totalSlides={3}
         interval={5000}
         isPlaying={true}

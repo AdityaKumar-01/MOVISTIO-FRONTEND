@@ -1,3 +1,19 @@
-*{
-    font-family: 'Nunito', sans-serif;
+* {
+  font-family: "Nunito", sans-serif;
+}
+.homepage-container{
+  background-color: rgb(233,248,246);
+}
+.homepage-carousel-container::before {
+  content: "MOVISTIO";
+  font-size: 210px;
+  text-align: center;
+  z-index: 0;
+  position: absolute;
+  letter-spacing: 30px;
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  color: rgb(232,236,235);
 }

@@ -11,6 +11,7 @@
     display:flex;
     justify-content: space-evenly;
     width:50%;
+    padding-top:1%;
 }
 .header-links{
     text-decoration: none;
@@ -18,4 +19,20 @@
     font-family: 'Nunito', sans-serif;
     font-size:16px;
     font-weight:bold;
+}
+.header-links::before{
+    content: "";
+    
+}
+.header-links:hover::before{
+    content: " ";
+    display: block;
+    position: absolute;
+    width:5%;
+    height:2px;
+    background-color: #FFE142;
+    top:10%;
+}
+.logo{
+    height:55px;
 }

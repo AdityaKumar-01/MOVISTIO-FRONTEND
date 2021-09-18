@@ -8,7 +8,7 @@ import "./Carousel.syles.css"
 import CarouselCard from './../CarouselCard/CarouselCard.component';
 
 const Carousel = () => {
-  const [ids, setIds] = useState(["19404", "278", "24428"]);
+  const [ids, setIds] = useState(["244786", "238", "24428"]);
     return (
       <CarouselProvider
         naturalSlideWidth={10}

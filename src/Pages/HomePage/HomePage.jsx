@@ -5,11 +5,13 @@ import "./HomePage.styles.css"
 import Carousel from './../../Components/Carousel/Carousel.component';
 const HomePage = () => {
     return (
-        <div className="homepage-container">
-            <Header/>    
-            <Carousel/>
+      <div className="homepage-container">
+        <Header />
+        <div className="homepage-carousel-container">
+          <Carousel />
         </div>
-    )
+      </div>
+    );
 }
 
 export default HomePage

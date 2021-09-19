@@ -1,8 +1,12 @@
 * {
   font-family: "Nunito", sans-serif;
 }
-.homepage-container{
-  background-color: rgb(233,248,246);
+html{
+  scroll-behavior: smooth;
+}
+.homepage-container {
+  background-color: rgb(233, 248, 246);
+  overflow-x: hidden;
 }
 .homepage-carousel-container::before {
   content: "MOVISTIO";
@@ -15,11 +19,54 @@
   display: flex;
   height: 100vh;
   align-items: center;
-  color: rgb(232,236,235);
+  color: rgb(232, 236, 235);
 }
-.homepage-carousel-container{
+.homepage-carousel-container {
   max-height: 100vh;
 }
-.slideInner___2mfX9 carousel__inner-slide{
+.slideInner___2mfX9 carousel__inner-slide {
   max-height: 100vh !important;
+}
+
+.homepage-title {
+  font-size: 45px;
+  font-weight: bold;
+}
+
+.homepage-desc {
+  font-size: 18px;
+}
+
+.homepage-title,
+.homepage-desc {
+  width: 100%;
+  text-align: center;
+  margin:3%;
+}
+.movie-carousel{
+  margin-left:5%;
+}
+
+.genre-option{
+  display: flex;
+  width:100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 0 5%;
+}
+.genre-btn{
+  font-weight: bold;
+  width: fit-content;
+  padding:1%;
+  margin:1%;
+  border-radius: 50px;
+  text-transform: uppercase;
+  color:black;
+  text-decoration: none;
+  background-color: #fcd200;
+}
+
+.genre-btn:nth-of-type(even){
+  background-color: #FFE142;
 }

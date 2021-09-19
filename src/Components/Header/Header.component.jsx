@@ -15,7 +15,7 @@ const Header = () => {
           <a href="#movies" className="header-links">
             MOVIES
           </a>
-          <a href="#genre" className="header-links">
+          <a href="#genres" className="header-links">
             GENRES
           </a>
         </span>

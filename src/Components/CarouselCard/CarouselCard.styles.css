@@ -52,11 +52,11 @@
   content: " ";
   position: absolute;
   z-index: -1;
-  top: 2%;
+  top: 15%;
   bottom: 0;
-  right: 20%;
+  right: 10%;
   height: 450px;
-  width: 250px;
+  width: 300px;
   border: 1px solid #aab5f1;
   border-radius: 4px;
   transition: all 0.3s ease-in-out
@@ -64,7 +64,7 @@
 
 .card-img:hover::before{
   right:15%;
-  top:0.7%;
+  top:5%;
   transition: all 0.3s linear
 }
 .card-right-container{

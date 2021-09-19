@@ -32,9 +32,18 @@ const CarouselCard = ({ id }) => {
         <div className="card-container">
           <div className="card-left-container">
             <div className="card-metadata">
-              <span><TranslateIcon color={"black"}/> <p className="meta-p">{data.original_language}</p></span>
-              <span><EventIcon color={"black"}/> <p className="meta-p">{data.release_date.split("-")[0]}</p></span>
-              <span><StarsIcon color={"black"}/> <p className="meta-p">{data.vote_average}/10</p></span>
+              <span>
+                <TranslateIcon color={"black"} />{" "}
+                <p className="meta-p">{data.original_language}</p>
+              </span>
+              <span>
+                <EventIcon color={"black"} />{" "}
+                <p className="meta-p">{data.release_date.split("-")[0]}</p>
+              </span>
+              <span>
+                <StarsIcon color={"black"} />{" "}
+                <p className="meta-p">{data.vote_average}/10</p>
+              </span>
               {/* <span>EN</span>
               <span>1995-09-12</span>
               <span>12/10</span> */}
@@ -43,7 +52,7 @@ const CarouselCard = ({ id }) => {
             <div className="card-desc">{data.tagline}</div>
             <div className="card-btn">
               <a href="#">
-                <SearchIcon classname="know-icon"/>
+                <SearchIcon classname="know-icon" />
                 KNOW MORE{" "}
               </a>
             </div>

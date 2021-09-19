@@ -1,0 +1,18 @@
+.genres-cards{
+    display: flex;
+    flex-wrap: wrap;
+    width:100%;
+    justify-content: center;
+    align-items: center;
+}
+.genres-page-container{
+    overflow-x: hidden;
+    width:100%;
+}
+
+.genres-page-title{
+    text-align: center;
+    font-size:50px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}

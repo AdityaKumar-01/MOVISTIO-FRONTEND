@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { CarouselProvider, Slider } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
-import {Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 import Header from "../../Components/Header/Header.component";
@@ -9,10 +9,31 @@ import Carousel from "./../../Components/Carousel/Carousel.component";
 import MovieCarousel from "./../../Components/MovieCarousel/MovieCarousel.component";
 
 import "./HomePage.styles.css";
-import Footer from './../../Components/Footer/Footer.component';
+import Footer from "./../../Components/Footer/Footer.component";
 
 const HomePage = () => {
   const [MovieData, setMovieData] = useState([]);
+  const [ids, setIds] = useState({
+    28: "Action",
+    12: "Adventure",
+    16: "Animation",
+    35: "Comedy",
+    80: "Crime",
+    99: "Documentary",
+    18: "Drama",
+    10751: "Family",
+    14: "Fantasy",
+    36: "History",
+    27: "Horror",
+    10402: "Music",
+    9648: "Mystery",
+    10749: "Romance",
+    878: "Science Fiction",
+    10770: "TV Movie",
+    53: "Thriller",
+    10752: "War",
+    37: "Western",
+  });
 
   useEffect(() => {
     var options = {
@@ -68,87 +89,18 @@ const HomePage = () => {
           enjoy.
         </div>
         <div class="genre-option" id="genre-option">
-            <Link class="genre-btn" to="genres/28" href="#genres">
-              action
-            </Link>
-          
-            <Link class="genre-btn" to="genres/12" href="#genres">
-              adventure
-            </Link>
-          
-            <Link class="genre-btn" to="genres/16" href="#genres">
-              animation
-            </Link>
-          
-            <Link class="genre-btn" to="genres/35" href="#genres">
-              comedy
-            </Link>
-          
-            <Link class="genre-btn" to="genres/80" href="#genres">
-              crime
-            </Link>
-          
-            <Link class="genre-btn" to="genres/99" href="#genres">
-              documentary
-            </Link>
-          
-            <Link class="genre-btn" to="genres/18" href="#genres">
-              drama
-            </Link>
-          
-            <Link class="genre-btn" to="genres/10751" href="#genres">
-              family
-            </Link>
-          
-            <Link class="genre-btn" to="genres/14" href="#genres">
-              fantasy
-            </Link>
-          
-            <Link class="genre-btn" to="genres/36" href="#genres">
-              history
-            </Link>
-          
-            <Link class="genre-btn" to="genres/27" href="#genres">
-              horror
-            </Link>
-          
-            <Link class="genre-btn" to="genres/10402" href="#genres">
-              music
-            </Link>
-          
-            <Link class="genre-btn" to="genres/9648" href="#genres">
-              mystery
-            </Link>
-          
-            <Link class="genre-btn" to="genres/10749" href="#genres">
-              romance
-            </Link>
-          
-            <Link class="genre-btn" to="genres/878" href="#genres">
-              sci-fi
-            </Link>
-          
-            <Link class="genre-btn" to="genres/10770" href="#genres">
-              tv movie
-            </Link>
-          
-            <Link class="genre-btn" to="genres/53" href="#genres">
-              thriller
-            </Link>
-          
-            <Link class="genre-btn" to="genres/10752" href="#genres">
-              war
-            </Link>
-          
-            <Link class="genre-btn" to="genres/37" href="#genres">
-              western
-            </Link>
+          {Object.keys(ids).map((key, index) => {
+            return (
+              <a class="genre-btn" href={`genres/${key}/${ids[key]}`}>
+                {ids[key]}
+              </a>
+            );
+          })}
           
         </div>
       </div>
-    <Footer/>
+      <Footer />
     </div>
-
   );
 };
 

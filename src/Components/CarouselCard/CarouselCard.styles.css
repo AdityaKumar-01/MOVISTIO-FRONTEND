@@ -90,7 +90,7 @@
 }
 
 .card-img:hover ~ .card-genre::before{
-  width:100px;
+  width:80px;
 }
 .card-btn{
   width:fit-content;

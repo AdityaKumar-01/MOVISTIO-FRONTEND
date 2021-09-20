@@ -51,7 +51,7 @@ const CarouselCard = ({ id }) => {
             <div className="card-title">{data.original_title}</div>
             <div className="card-desc">{data.tagline}</div>
             <div className="card-btn">
-              <a href="#">
+              <a href={`/movies/${id}`}>
                 <SearchIcon classname="know-icon" />
                 KNOW MORE{" "}
               </a>

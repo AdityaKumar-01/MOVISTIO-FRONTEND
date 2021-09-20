@@ -33,10 +33,12 @@ const MovieCarousel = ({ data }) => {
     <Slide>
       <div className="movie-carousel-card">
         <span className="movie-img-container">
-          <img
-            src={`https://image.tmdb.org/t/p/original${data.poster_path}`}
-            alt="img"
-          />
+          <a href={`/movies/${data.id}`}>
+            <img
+              src={`https://image.tmdb.org/t/p/original${data.poster_path}`}
+              alt="img"
+            />
+          </a>
         </span>
         <span className="detail-holder">
           <span>{mapIdToName(data.genre_ids[0])}</span>|

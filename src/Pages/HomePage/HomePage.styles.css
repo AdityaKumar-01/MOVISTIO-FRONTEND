@@ -1,5 +1,8 @@
 * {
   font-family: "Nunito", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding:0;
 }
 html{
   scroll-behavior: smooth;
@@ -7,6 +10,7 @@ html{
 .homepage-container {
   background-color: rgb(233, 248, 246);
   overflow-x: hidden;
+  width:100%;
 }
 .homepage-carousel-container::before {
   content: "MOVISTIO";
@@ -65,8 +69,14 @@ html{
   color:black;
   text-decoration: none;
   background-color: #fcd200;
+  transition: all 0.5s;
 }
 
 .genre-btn:nth-of-type(even){
   background-color: #FFE142;
+}
+
+.genre-btn:hover{
+  box-shadow: 0 0 10px #968326;
+  transition: all 0.5s;
 }

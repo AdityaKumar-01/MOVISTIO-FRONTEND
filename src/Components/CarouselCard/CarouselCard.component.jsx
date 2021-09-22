@@ -33,26 +33,24 @@ const CarouselCard = ({ id }) => {
           <div className="card-left-container">
             <div className="card-metadata">
               <span>
-                <TranslateIcon color={"black"} />{" "}
+                <TranslateIcon />
                 <p className="meta-p">{data.original_language}</p>
               </span>
               <span>
-                <EventIcon color={"black"} />{" "}
+                <EventIcon />
                 <p className="meta-p">{data.release_date.split("-")[0]}</p>
               </span>
               <span>
-                <StarsIcon color={"black"} />{" "}
+                <StarsIcon />
                 <p className="meta-p">{data.vote_average}/10</p>
               </span>
-              {/* <span>EN</span>
-              <span>1995-09-12</span>
-              <span>12/10</span> */}
+              
             </div>
             <div className="card-title">{data.original_title}</div>
             <div className="card-desc">{data.tagline}</div>
             <div className="card-btn">
               <a href={`/movies/${id}`}>
-                <SearchIcon classname="know-icon" />
+                <SearchIcon className="know-icon" />
                 KNOW MORE{" "}
               </a>
             </div>
@@ -63,10 +61,7 @@ const CarouselCard = ({ id }) => {
                 src={`https://image.tmdb.org/t/p/original${data.poster_path}`}
                 alt="img"
               />
-              {/* <img
-                src="https://image.tmdb.org/t/p/original/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg"
-                alt="img"
-              /> */}
+
             </div>
             <div className="card-genre">{data.genres[1].name}</div>
           </div>

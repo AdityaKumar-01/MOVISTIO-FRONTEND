@@ -74,8 +74,8 @@ const HomePage = () => {
               infinite={true}
             >
               <Slider>
-                {MovieData.map((obj) => {
-                  return <MovieCarousel data={obj} />;
+                {MovieData.map((obj, key) => {
+                  return <MovieCarousel key = {key} data={obj} />;
                 })}
               </Slider>
             </CarouselProvider>
@@ -88,10 +88,10 @@ const HomePage = () => {
           Here are some of the most popular movies that our users & viewers
           enjoy.
         </div>
-        <div class="genre-option" id="genre-option">
+        <div className="genre-option" id="genre-option">
           {Object.keys(ids).map((key, index) => {
             return (
-              <a class="genre-btn" href={`genres/${key}/${ids[key]}`}>
+              <a className="genre-btn" href={`genres/${key}/${ids[key]}`}>
                 {ids[key]}
               </a>
             );

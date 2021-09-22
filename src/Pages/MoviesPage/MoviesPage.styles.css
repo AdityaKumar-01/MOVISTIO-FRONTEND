@@ -76,3 +76,22 @@
     margin-right:10%;
     margin-left:1%;
 }
+
+.cast-card-title{
+  width:100%;
+  text-align:center;
+  font-size:45px;
+  font-weight: bold;
+  margin:3%;
+  position:relative;
+}
+.cast-card-title:after{
+  content:"";
+  position:absolute;
+  top:120%;
+  left:35%;
+  background-color:#FFE142;
+  height:3px;
+  width:400px;
+  display:block;
+}

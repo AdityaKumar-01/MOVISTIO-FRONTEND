@@ -17,3 +17,11 @@
     margin-bottom: 30px;
     margin-top: 30px;
 }
+
+.cast-card-wrapper{
+    display: flex;
+    width:100%;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}

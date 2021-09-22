@@ -7,6 +7,7 @@ import "./MoviesPage.styles.css";
 import Header from "./../../Components/Header/Header.component";
 import Footer from "./../../Components/Footer/Footer.component";
 import EventIcon from "@material-ui/icons/Event";
+import CastCard from './../../Components/CastCard/CastCard.component';
 
 const MoviesPage = () => {
   let { id } = useParams();
@@ -15,22 +16,33 @@ const MoviesPage = () => {
   const [cast, setCast] = useState();
 
   useEffect(() => {
-    const options = {
-      method: "GET",
-      url: `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
-    };
-
-    axios
-      .request(options)
-      .then((res) => {
-        console.log(res);
-        currentData(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, [data]);
+    const getData = async () =>{
+      const option1 = {
+        method: "GET",
+        url: `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
+      };
+      const info = await axios.request(option1);
+      currentData(info.data);
+    }
+    const getCast = async () =>{
+      const option2 = {
+        method: "GET",
+        url: `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.REACT_APP_API_KEY}`,
+      };
+      const info = await axios.request(option2);
+      setCast(info.data.cast.slice(0,11));
+    }
+    
+    Promise.all([getData(), getCast()]).then((val) =>{
+      console.log(cast);
+    }).catch(err =>{ 
+      
+    })
+  }, []);
   return (
-    <div>
+    <div style={{"overflowX":"hidden"}}>
       <Header />
+      {console.log(cast)}
       {data ? (
         <div className="movies-page-header">
           <div className="movies-page-backdrop">
@@ -43,7 +55,7 @@ const MoviesPage = () => {
               <span className="backdrop-title">{data.title}</span>
               <span className="backdrop-desc">{data.overview}</span>
               <span className="genres-card-holder">
-                {data.genres.map((obj) => {
+                {data.genres.map((obj, key) => {
                   return <span className="genres-card">{obj.name}</span>;
                 })}
               </span>
@@ -67,6 +79,16 @@ const MoviesPage = () => {
           </div>
         </div>
       ) : null}
+      <div className="cast-card-title">
+          {data ? (`Cast in ${data.title}`): null}
+      </div>
+      <div className="cast-card-wrapper">
+        {cast ? (
+          cast.map(obj =>{
+            return (<CastCard data={obj}/>)
+          })
+        ):null}
+      </div>
       <Footer />
     </div>
   );

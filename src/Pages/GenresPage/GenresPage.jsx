@@ -13,7 +13,7 @@ const GenresPage = () => {
   useEffect(() => {
     const options = {
       method: "GET",
-      url: `https://api.themoviedb.org/3/discover/movie?api_key=fc671a9683da1e18060546d03e4e88bd&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=
+      url: `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=
       ${id}`,
     };
 

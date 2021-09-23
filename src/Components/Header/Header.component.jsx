@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from "react-router-dom"
 import logo from "../../Assets/logo.png"
 import "./Header.styles.css";
+
 const Header = () => {
     return (
       <div className="header-wrapper">

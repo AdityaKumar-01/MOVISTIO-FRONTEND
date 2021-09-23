@@ -7,42 +7,89 @@ import "./MoviesPage.styles.css";
 import Header from "./../../Components/Header/Header.component";
 import Footer from "./../../Components/Footer/Footer.component";
 import EventIcon from "@material-ui/icons/Event";
-import CastCard from './../../Components/CastCard/CastCard.component';
+import CastCard from "./../../Components/CastCard/CastCard.component";
 
 const MoviesPage = () => {
   let { id } = useParams();
-
   const [data, currentData] = useState();
   const [cast, setCast] = useState();
 
   useEffect(() => {
-    const getData = async () =>{
+    const getData = async () => {
       const option1 = {
         method: "GET",
         url: `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
       };
-      const info = await axios.request(option1);
-      currentData(info.data);
-    }
-    const getCast = async () =>{
+      const movie = await axios.request(option1);
+      currentData(movie.data);
       const option2 = {
         method: "GET",
         url: `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.REACT_APP_API_KEY}`,
       };
-      const info = await axios.request(option2);
-      setCast(info.data.cast.slice(0,11));
-    }
-    
-    Promise.all([getData(), getCast()]).then((val) =>{
-      console.log(cast);
-    }).catch(err =>{ 
-      
-    })
+      const cast = await axios.request(option2);
+      setCast(cast.data.cast.slice(0, 11));
+        const option3 = {
+        method: "POST",
+        url: "http://localhost:5000/getRecommendations",
+        data: { cast:cast, movie: data },
+      };
+      const recommendations = await axios.request(option3);
+
+    console.log(recommendations);
+    };
+    getData();
   }, []);
+
+  // const getData = () => {
+  //   console.log("hey");
+  //   Promise.all([getRecommendations()]).then(() =>{
+  //     console.log("called");
+  //   }).catch((err) => {console.log(err);});
+  // };
+  // const getRecommendations = () => {
+  //   const options = {
+  //     method: "GET",
+  //     url: "http://localhost:5000/getRecommendations",
+  //     params: { title: data.title },
+  //   };
+  //   axios
+  //     .request(options)
+  //     .then((data) => {
+  //       console.log("hello");
+  //     })
+  //     .catch((err) => {
+  //       console.log("error");
+  //     });
+  // };
+
+  // const getReviews = async () =>{
+  //   const option1 = {
+  //     method: "GET",
+  //     url: `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
+  //   };
+  //   const info = await axios.request(option1);
+  //   getReviewsSentiment(info.data)
+  // }
+  // const getReviewsSentiment = (reviews) =>{
+  //   const options = {
+  //     method: "POST",
+  //     url: "http://localhost:5000/filterReviews",
+  //     data: {
+  //       reviews: reviews,
+  //     },
+  //   };
+  //   axios
+  //     .request(options)
+  //     .then((data) => {
+  //       console.log(data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }
   return (
-    <div style={{"overflowX":"hidden"}}>
+    <div style={{ overflowX: "hidden" }}>
       <Header />
-      {console.log(cast)}
       {data ? (
         <div className="movies-page-header">
           <div className="movies-page-backdrop">
@@ -80,14 +127,14 @@ const MoviesPage = () => {
         </div>
       ) : null}
       <div className="cast-card-title">
-          {data ? (`Cast in ${data.title}`): null}
+        {data ? `Cast in ${data.title}` : null}
       </div>
       <div className="cast-card-wrapper">
-        {cast ? (
-          cast.map(obj =>{
-            return (<CastCard data={obj}/>)
-          })
-        ):null}
+        {cast
+          ? cast.map((obj) => {
+              return <CastCard data={obj} />;
+            })
+          : null}
       </div>
       <Footer />
     </div>

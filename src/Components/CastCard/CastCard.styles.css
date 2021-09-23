@@ -5,12 +5,12 @@
   justify-content: center;
 }
 .cast-card-container {
-  width: 30%;
+  width: 20%;
   margin: 2% 1%;
 }
 .cast-img {
-  width: 350px;
-  height: 550px;
+  width: 250px;
+  height: 400px;
   border-radius: 5px;
   margin-bottom: 20px;
 }

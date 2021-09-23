@@ -44,7 +44,6 @@ const CarouselCard = ({ id }) => {
                 <StarsIcon />
                 <p className="meta-p">{data.vote_average}/10</p>
               </span>
-              
             </div>
             <div className="card-title">{data.original_title}</div>
             <div className="card-desc">{data.tagline}</div>
@@ -61,7 +60,6 @@ const CarouselCard = ({ id }) => {
                 src={`https://image.tmdb.org/t/p/original${data.poster_path}`}
                 alt="img"
               />
-
             </div>
             <div className="card-genre">{data.genres[1].name}</div>
           </div>

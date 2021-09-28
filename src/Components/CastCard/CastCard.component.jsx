@@ -3,7 +3,7 @@ import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
 import "./CastCard.styles.css";
 const CastCard = ({ data }) => {
-  return (
+  return data.profile_path ? (
     <div className="cast-card-container">
       <img
         className="cast-img"
@@ -19,6 +19,8 @@ const CastCard = ({ data }) => {
         <a href="/">Know More</a> <ArrowRightIcon />
       </span>
     </div>
+  ) : (
+    null
   );
 };
 

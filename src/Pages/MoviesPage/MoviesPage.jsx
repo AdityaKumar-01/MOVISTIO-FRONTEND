@@ -8,12 +8,13 @@ import Header from "./../../Components/Header/Header.component";
 import Footer from "./../../Components/Footer/Footer.component";
 import EventIcon from "@material-ui/icons/Event";
 import CastCard from "./../../Components/CastCard/CastCard.component";
+import RcmdCard from './../../Components/RcmdCard/RcmdCard.component';
 
 const MoviesPage = () => {
   let { id } = useParams();
   const [data, currentData] = useState();
   const [cast, setCast] = useState([]);
-
+  const [rcmd, setRcmd] = useState([]);
   useEffect(() => {
     const getMovieData = async () => {
       const option = {
@@ -49,12 +50,12 @@ const MoviesPage = () => {
         data: { cast: cast, movie: data },
       };
       const recommendations = await axios.request(option);
-
+      setRcmd(recommendations.data.data);
       return {
-        status: 200,
-        data: recommendations.data,
+        status: 200
       };
     };
+
     const getData = async () => {
       let movieStatus = await getMovieData();
       let castStatus = await getCastData();
@@ -62,8 +63,7 @@ const MoviesPage = () => {
         movieStatus.data,
         castStatus.data
       );
-      console.log(rcmdStatus.data);
-      // console.log(movieStatus.status, castStatus.status, rcmdStatus.status);
+     
     };
     getData();
   }, []);
@@ -114,6 +114,19 @@ const MoviesPage = () => {
         {cast
           ? cast.map((obj) => {
               return <CastCard data={obj} />;
+            })
+          : null}
+      </div>
+      <div className="cast-card-title">
+        Recommendations for you
+      </div>
+      <div
+        className="genres-cards"
+        style={{ padding: "5%", "justify-content": "space-around" }}
+      >
+        {rcmd
+          ? rcmd.map((obj) => {
+              return <RcmdCard name={obj[0]} />;
             })
           : null}
       </div>

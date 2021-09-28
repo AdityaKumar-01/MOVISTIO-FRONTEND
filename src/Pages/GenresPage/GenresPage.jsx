@@ -33,7 +33,7 @@ const GenresPage = () => {
       <div className="genres-cards">
         {data
           ? data.map((obj) => {
-              return <GenreCard data={obj} />;
+              return <GenreCard data={obj}/>;
             })
           : null}
       </div>

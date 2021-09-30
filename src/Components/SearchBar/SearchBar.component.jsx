@@ -1,23 +1,25 @@
-import React,{useState, useEffect} from "react";
+import React from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-import Stack from "@mui/material/Stack";
 import { MoviesList } from "./MoviesList";
-import "./SearchBar.styles.css"
+import "./SearchBar.styles.css";
 
+const SearchBar = ({value, setValue}) => {
 
-const SearchBar = () => {
-   
-        const defaultProps = {
-          options: MoviesList,
-          getOptionLabel: (option) => option.title,
-        };
-       
+  const defaultProps = {
+    options: MoviesList,
+    getOptionLabel: (option) => option.title,
+  };
+
   return (
     <Autocomplete
       {...defaultProps}
       id="disable-close-on-select"
-      
+      value={value}
+      onChange={(x,y) => {
+        if(y)
+          setValue(y.title);
+      }}
       renderInput={(params) => (
         <TextField
           {...params}

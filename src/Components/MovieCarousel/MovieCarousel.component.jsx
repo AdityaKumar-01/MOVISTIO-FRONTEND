@@ -33,7 +33,7 @@ const MovieCarousel = ({ data }) => {
     <Slide>
       <div className="movie-carousel-card">
         <span className="movie-img-container">
-          <a href={`/movies/${data.id}`}>
+          <a href={`/movies/${data.title}`}>
             <img
               src={`https://image.tmdb.org/t/p/original${data.poster_path}`}
               alt="img"

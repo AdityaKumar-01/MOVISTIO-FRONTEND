@@ -25,7 +25,7 @@ const GenreCard = ({ data }) => {
         </span>
       </span>
       <span className="genre-card-btn">
-        <a href={`/movies/${data.id}`}>Know More </a>
+        <a href={`/movies/${data.title}`}>Know More </a>
         <ArrowRightIcon />
       </span>
     </div>

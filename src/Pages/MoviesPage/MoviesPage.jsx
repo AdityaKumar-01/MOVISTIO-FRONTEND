@@ -8,35 +8,65 @@ import Header from "./../../Components/Header/Header.component";
 import Footer from "./../../Components/Footer/Footer.component";
 import EventIcon from "@material-ui/icons/Event";
 import CastCard from "./../../Components/CastCard/CastCard.component";
-import RcmdCard from './../../Components/RcmdCard/RcmdCard.component';
+import RcmdCard from "./../../Components/RcmdCard/RcmdCard.component";
+import LoaderPage from "./../LoaderPage/LoaderPage";
 
 const MoviesPage = () => {
-  let { id } = useParams();
+  let { name } = useParams();
   const [data, currentData] = useState();
   const [cast, setCast] = useState([]);
   const [rcmd, setRcmd] = useState([]);
+  const [loader, setLoader] = useState(true);
+  const [ids, setIds] = useState({
+    28: "Action",
+    12: "Adventure",
+    16: "Animation",
+    35: "Comedy",
+    80: "Crime",
+    99: "Documentary",
+    18: "Drama",
+    10751: "Family",
+    14: "Fantasy",
+    36: "History",
+    27: "Horror",
+    10402: "Music",
+    9648: "Mystery",
+    10749: "Romance",
+    878: "Science Fiction",
+    10770: "TV Movie",
+    53: "Thriller",
+    10752: "War",
+    37: "Western",
+  });
   useEffect(() => {
     const getMovieData = async () => {
       const option = {
         method: "GET",
-        url: `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
+        url: `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${name}`,
       };
       const movie = await axios.request(option);
-      currentData(movie.data);
+      currentData(movie.data.results[0]);
+
+      let gens = [];
+      movie.data.results[0].genre_ids.forEach((id) => ( gens.push(ids[id])));
+      let info = {
+        genres: gens,
+        id: movie.data.results[0].id,
+      };
+
       return {
         status: 200,
-        data: movie.data.genres,
+        data: info,
       };
     };
 
-    const getCastData = async () => {
+    const getCastData = async (id) => {
       const option = {
         method: "GET",
         url: `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.REACT_APP_API_KEY}`,
       };
       const cast = await axios.request(option);
       setCast(cast.data.cast.slice(0, 11));
-
       return {
         status: 200,
         data: cast.data.cast.slice(0, 11),
@@ -44,6 +74,7 @@ const MoviesPage = () => {
     };
 
     const getRecommendations = async (data, cast) => {
+      console.log(data)
       const option = {
         method: "POST",
         url: "http://localhost:5000/getRecommendations",
@@ -52,86 +83,94 @@ const MoviesPage = () => {
       const recommendations = await axios.request(option);
       setRcmd(recommendations.data.data);
       return {
-        status: 200
+        status: 200,
       };
     };
 
     const getData = async () => {
       let movieStatus = await getMovieData();
-      let castStatus = await getCastData();
+
+      let castStatus = await getCastData(movieStatus.data.id);
       let rcmdStatus = await getRecommendations(
-        movieStatus.data,
+        movieStatus.data.genres,
         castStatus.data
       );
-     
+      setLoader(false);
     };
+    console.log(name);
     getData();
-  }, []);
+  }, [name]);
 
   return (
-    <div style={{ overflowX: "hidden" }}>
-      <Header />
-      {data ? (
-        <div className="movies-page-header">
-          <div className="movies-page-backdrop">
-            <img
-              className="backdrop-img"
-              src={`https://image.tmdb.org/t/p/original${data.backdrop_path}`}
-              alt="img"
-            />
-            <span className="backdrop-details">
-              <span className="backdrop-title">{data.title}</span>
-              <span className="backdrop-desc">{data.overview}</span>
-              <span className="genres-card-holder">
-                {data.genres.map((obj, key) => {
-                  return <span className="genres-card">{obj.name}</span>;
-                })}
-              </span>
-              <span className="backdrop-metdata">
-                <EventIcon />
-                <p className="backdrop-p">{data.release_date.split("-")[0]}</p>
-                <CircularProgressbar
-                  className="prog-bar"
-                  value={data.vote_average}
-                  maxValue={10}
-                  minValue={0}
-                  text={data.vote_average}
-                  styles={buildStyles({
-                    pathColor: "#FFE142",
-                    textColor: "#FFE142",
-                    trailColor: "#a4a4a4",
-                  })}
+    <>
+      {loader ? (
+        <LoaderPage />
+      ) : (
+        <div style={{ overflowX: "hidden" }}>
+          <Header />
+          {data ? (
+            <div className="movies-page-header">
+              <div className="movies-page-backdrop">
+                <img
+                  className="backdrop-img"
+                  src={`https://image.tmdb.org/t/p/original${data.backdrop_path}`}
+                  alt="img"
                 />
-              </span>
-            </span>
+                <span className="backdrop-details">
+                  <span className="backdrop-title">{data.title}</span>
+                  <span className="backdrop-desc">{data.overview}</span>
+                  <span className="genres-card-holder">
+                    {data.genre_ids.map((obj, key) => {
+                      return <span className="genres-card">{ids[obj]}</span>;
+                    })}
+                  </span>
+                  <span className="backdrop-metdata">
+                    <EventIcon />
+                    <p className="backdrop-p">
+                      {data.release_date.split("-")[0]}
+                    </p>
+                    <CircularProgressbar
+                      className="prog-bar"
+                      value={data.vote_average}
+                      maxValue={10}
+                      minValue={0}
+                      text={data.vote_average}
+                      styles={buildStyles({
+                        pathColor: "#FFE142",
+                        textColor: "#FFE142",
+                        trailColor: "#a4a4a4",
+                      })}
+                    />
+                  </span>
+                </span>
+              </div>
+            </div>
+          ) : null}
+          <div className="cast-card-title">
+            {data ? `Cast in ${data.title}` : null}
           </div>
+          <div className="cast-card-wrapper">
+            {cast
+              ? cast.map((obj) => {
+                  return <CastCard data={obj} />;
+                })
+              : null}
+          </div>
+          <div className="cast-card-title">Recommendations for you</div>
+          <div
+            className="genres-cards"
+            style={{ padding: "5%", "justify-content": "space-around" }}
+          >
+            {rcmd
+              ? rcmd.map((obj) => {
+                  return <RcmdCard name={obj[0]} />;
+                })
+              : null}
+          </div>
+          <Footer />
         </div>
-      ) : null}
-      <div className="cast-card-title">
-        {data ? `Cast in ${data.title}` : null}
-      </div>
-      <div className="cast-card-wrapper">
-        {cast
-          ? cast.map((obj) => {
-              return <CastCard data={obj} />;
-            })
-          : null}
-      </div>
-      <div className="cast-card-title">
-        Recommendations for you
-      </div>
-      <div
-        className="genres-cards"
-        style={{ padding: "5%", "justify-content": "space-around" }}
-      >
-        {rcmd
-          ? rcmd.map((obj) => {
-              return <RcmdCard name={obj[0]} />;
-            })
-          : null}
-      </div>
-      <Footer />
-    </div>
+      )}
+    </>
   );
 };
 

@@ -4,7 +4,8 @@
 	justify-content: center;
 	flex-direction: column;
 	width: 100%;
-	height:100vh
+  background: #333;
+	height:100vh;
 }
 .loader-p{
 	color:#FFE142;
@@ -12,7 +13,6 @@
 }
 body {
   margin: 0;
-  background: #333;
 }
 
 @keyframes arrow-spin {

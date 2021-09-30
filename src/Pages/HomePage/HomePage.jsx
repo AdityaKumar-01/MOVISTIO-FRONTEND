@@ -10,9 +10,11 @@ import MovieCarousel from "./../../Components/MovieCarousel/MovieCarousel.compon
 
 import "./HomePage.styles.css";
 import Footer from "./../../Components/Footer/Footer.component";
+import LoaderPage from './../LoaderPage/LoaderPage';
 
 const HomePage = () => {
   const [MovieData, setMovieData] = useState([]);
+  const [loader, setLoader] = useState(true);
   const [ids, setIds] = useState({
     28: "Action",
     12: "Adventure",
@@ -44,63 +46,69 @@ const HomePage = () => {
       .request(options)
       .then((details) => {
         setMovieData(details.data.results);
+        setLoader(false)
       })
       .catch((err) => {
         console.log(err);
       });
   }, [MovieData]);
   return (
-    <div className="homepage-container">
-      <Header />
-      <div className="homepage-carousel-container">
-        <Carousel />
-      </div>
-      <div className="homepage-movies" id="movies">
-        <div className="homepage-title">Popular Movies</div>
-        <div className="homepage-desc">
-          Here are some of the most popular movies that our users & viewers
-          enjoy.
+    <>
+      {loader ? (
+        <LoaderPage/>
+      ) : (
+        <div className="homepage-container">
+          <Header />
+          <div className="homepage-carousel-container">
+            <Carousel />
+          </div>
+          <div className="homepage-movies" id="movies">
+            <div className="homepage-title">Popular Movies</div>
+            <div className="homepage-desc">
+              Here are some of the most popular movies that our users & viewers
+              enjoy.
+            </div>
+            <div className="movie-carousel">
+              {MovieData ? (
+                <CarouselProvider
+                  visibleSlides={3}
+                  step={3}
+                  naturalSlideWidth={100}
+                  naturalSlideHeight={150}
+                  totalSlides={20}
+                  interval={7000}
+                  isPlaying={true}
+                  infinite={true}
+                >
+                  <Slider>
+                    {MovieData.map((obj, key) => {
+                      return <MovieCarousel key={key} data={obj} />;
+                    })}
+                  </Slider>
+                </CarouselProvider>
+              ) : null}
+            </div>
+          </div>
+          <div className="homepage-genres" id="genres">
+            <div className="homepage-title">Search by Genres</div>
+            <div className="homepage-desc">
+              Here are some of the most popular movies that our users & viewers
+              enjoy.
+            </div>
+            <div className="genre-option" id="genre-option">
+              {Object.keys(ids).map((key, index) => {
+                return (
+                  <a className="genre-btn" href={`genres/${key}/${ids[key]}`}>
+                    {ids[key]}
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+          <Footer />
         </div>
-        <div className="movie-carousel">
-          {MovieData ? (
-            <CarouselProvider
-              visibleSlides={3}
-              step={3}
-              naturalSlideWidth={100}
-              naturalSlideHeight={150}
-              totalSlides={20}
-              interval={7000}
-              isPlaying={true}
-              infinite={true}
-            >
-              <Slider>
-                {MovieData.map((obj, key) => {
-                  return <MovieCarousel key = {key} data={obj} />;
-                })}
-              </Slider>
-            </CarouselProvider>
-          ) : null}
-        </div>
-      </div>
-      <div className="homepage-genres" id="genres">
-        <div className="homepage-title">Search by Genres</div>
-        <div className="homepage-desc">
-          Here are some of the most popular movies that our users & viewers
-          enjoy.
-        </div>
-        <div className="genre-option" id="genre-option">
-          {Object.keys(ids).map((key, index) => {
-            return (
-              <a className="genre-btn" href={`genres/${key}/${ids[key]}`}>
-                {ids[key]}
-              </a>
-            );
-          })}
-          
-        </div>
-      </div>
-      <Footer />
-    </div>
+      )}
+    </>
   );
 };
 

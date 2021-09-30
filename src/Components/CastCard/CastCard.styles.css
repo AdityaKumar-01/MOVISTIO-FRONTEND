@@ -1,4 +1,5 @@
-.cast-card-container,.cast-detail-holder {
+.cast-card-container,
+.cast-detail-holder {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,18 +15,17 @@
   border-radius: 5px;
   margin-bottom: 20px;
 }
-.cast-btn{
-    display: flex;
-    align-items: center;
+.cast-btn {
+  display: flex;
+  align-items: center;
 }
-.cast-btn a{
-    text-decoration: none;
-    color:black;
-    
+.cast-btn a {
+  text-decoration: none;
+  color: black;
 }
 
-.cast-detail-holder{
-    width:100%;
-    border-radius: 5px;
-    padding:1%;
+.cast-detail-holder {
+  width: 100%;
+  border-radius: 5px;
+  padding: 1%;
 }

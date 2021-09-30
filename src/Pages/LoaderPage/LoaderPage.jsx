@@ -1,5 +1,7 @@
 import React from "react";
+
 import "./LoaderPage.css";
+
 const LoaderPage = () => {
   return (
     <div className="loader-page">

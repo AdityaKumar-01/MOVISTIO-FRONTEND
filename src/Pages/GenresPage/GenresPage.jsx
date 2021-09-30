@@ -2,14 +2,17 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import axios from "axios";
+
 import GenreCard from "./../../Components/GenreCard/GenreCard.component";
-import Header from './../../Components/Header/Header.component';
-import Footer from './../../Components/Footer/Footer.component';
-import "./GenresPage.styles.css"
+import Header from "./../../Components/Header/Header.component";
+import Footer from "./../../Components/Footer/Footer.component";
+
+import "./GenresPage.styles.css";
+
 const GenresPage = () => {
   const [data, setData] = useState([]);
   let { id } = useParams();
-  let {name} = useParams();
+  let { name } = useParams();
   useEffect(() => {
     const options = {
       method: "GET",
@@ -20,7 +23,6 @@ const GenresPage = () => {
     axios
       .request(options)
       .then((data) => {
-        // console.log(data.data);
         setData(data.data.results);
       })
       .catch((error) => console.log(error));
@@ -33,7 +35,7 @@ const GenresPage = () => {
       <div className="genres-cards">
         {data
           ? data.map((obj) => {
-              return <GenreCard data={obj}/>;
+              return <GenreCard data={obj} />;
             })
           : null}
       </div>

@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import { useParams } from "react-router-dom";
 import axios from "axios";
-import "./MoviesPage.styles.css";
+import EventIcon from "@material-ui/icons/Event";
+
 import Header from "./../../Components/Header/Header.component";
 import Footer from "./../../Components/Footer/Footer.component";
-import EventIcon from "@material-ui/icons/Event";
 import CastCard from "./../../Components/CastCard/CastCard.component";
 import RcmdCard from "./../../Components/RcmdCard/RcmdCard.component";
 import LoaderPage from "./../LoaderPage/LoaderPage";
+
+import "./MoviesPage.styles.css";
 
 const MoviesPage = () => {
   let { name } = useParams();
@@ -48,7 +51,7 @@ const MoviesPage = () => {
       currentData(movie.data.results[0]);
 
       let gens = [];
-      movie.data.results[0].genre_ids.forEach((id) => ( gens.push(ids[id])));
+      movie.data.results[0].genre_ids.forEach((id) => gens.push(ids[id]));
       let info = {
         genres: gens,
         id: movie.data.results[0].id,
@@ -74,7 +77,7 @@ const MoviesPage = () => {
     };
 
     const getRecommendations = async (data, cast) => {
-      console.log(data)
+      console.log(data);
       const option = {
         method: "POST",
         url: "http://localhost:5000/getRecommendations",
@@ -151,8 +154,8 @@ const MoviesPage = () => {
           </div>
           <div className="cast-card-wrapper">
             {cast
-              ? cast.map((obj) => {
-                  return <CastCard data={obj} />;
+              ? cast.map((obj, key) => {
+                  return <CastCard key={key} data={obj} />;
                 })
               : null}
           </div>
@@ -162,8 +165,8 @@ const MoviesPage = () => {
             style={{ padding: "5%", "justify-content": "space-around" }}
           >
             {rcmd
-              ? rcmd.map((obj) => {
-                  return <RcmdCard name={obj[0]} />;
+              ? rcmd.map((obj, key) => {
+                  return <RcmdCard key={key} name={obj[0]} />;
                 })
               : null}
           </div>

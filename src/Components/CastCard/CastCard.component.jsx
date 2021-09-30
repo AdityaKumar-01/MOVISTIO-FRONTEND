@@ -1,7 +1,9 @@
 import React from "react";
+
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
 import "./CastCard.styles.css";
+
 const CastCard = ({ data }) => {
   return data.profile_path ? (
     <div className="cast-card-container">
@@ -19,9 +21,7 @@ const CastCard = ({ data }) => {
         <a href="/">Know More</a> <ArrowRightIcon />
       </span>
     </div>
-  ) : (
-    null
-  );
+  ) : null;
 };
 
 export default CastCard;

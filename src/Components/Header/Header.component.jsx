@@ -1,18 +1,20 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+
 import logo from "../../Assets/logo.png";
-import "./Header.styles.css";
 import SearchIcon from "@material-ui/icons/Search";
 import SearchBar from "./../SearchBar/SearchBar.component";
-import { useHistory } from "react-router-dom";
+
+import "./Header.styles.css";
 
 const Header = () => {
   let history = useHistory();
-    const [value, setValue] = useState();
+  const [value, setValue] = useState();
 
-    const handleClick = () =>{
-      history.push(`/movies/${value}`);
-    }
+  const handleClick = () => {
+    history.push(`/movies/${value}`);
+  };
   return (
     <div className="header-wrapper">
       <span className="header-logo">

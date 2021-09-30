@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
+
 import axios from "axios";
 import { Slide } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
+
 import SearchIcon from "@material-ui/icons/Search";
 import TranslateIcon from "@material-ui/icons/Translate";
 import EventIcon from "@material-ui/icons/Event";
 import StarsIcon from "@material-ui/icons/Stars";
+
 import "./CarouselCard.styles.css";
+
 const CarouselCard = ({ id }) => {
   const [data, setData] = useState(null);
+
   const getDetails = () => {
     var options = {
       method: "GET",

@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
+
+import axios from "axios";
 import { CarouselProvider, Slider } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
-import { Link } from "react-router-dom";
-import axios from "axios";
 
 import Header from "../../Components/Header/Header.component";
 import Carousel from "./../../Components/Carousel/Carousel.component";
 import MovieCarousel from "./../../Components/MovieCarousel/MovieCarousel.component";
+import Footer from "./../../Components/Footer/Footer.component";
+import LoaderPage from "./../LoaderPage/LoaderPage";
 
 import "./HomePage.styles.css";
-import Footer from "./../../Components/Footer/Footer.component";
-import LoaderPage from './../LoaderPage/LoaderPage';
 
 const HomePage = () => {
   const [MovieData, setMovieData] = useState([]);
@@ -46,7 +46,7 @@ const HomePage = () => {
       .request(options)
       .then((details) => {
         setMovieData(details.data.results);
-        setLoader(false)
+        setLoader(false);
       })
       .catch((err) => {
         console.log(err);
@@ -55,7 +55,7 @@ const HomePage = () => {
   return (
     <>
       {loader ? (
-        <LoaderPage/>
+        <LoaderPage />
       ) : (
         <div className="homepage-container">
           <Header />

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import LocalMoviesIcon from "@mui/icons-material/LocalMovies";import TranslateIcon from "@material-ui/icons/Translate";
+
+import LocalMoviesIcon from "@mui/icons-material/LocalMovies";
 import EventIcon from "@material-ui/icons/Event";
 import StarsIcon from "@material-ui/icons/Stars";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+
 import axios from "axios";
 
 const RcmdCard = ({ name }) => {
@@ -36,10 +38,11 @@ const RcmdCard = ({ name }) => {
     };
     axios
       .request(option)
-      .then((response) => {console.log(response);
-        setData(response.data.results[0])})
+      .then((response) => {
+        console.log(response);
+        setData(response.data.results[0]);
+      })
       .catch((error) => console.log(error));
-
   }, []);
   return (
     <div>

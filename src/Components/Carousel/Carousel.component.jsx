@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+
 import { CarouselProvider, Slider } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
-import "./Carousel.syles.css";
+
 import CarouselCard from "./../CarouselCard/CarouselCard.component";
 
 const Carousel = () => {

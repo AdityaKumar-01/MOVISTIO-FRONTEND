@@ -25,12 +25,12 @@
   margin-right: 15%;
   display: flex;
   align-items: center;
-  background-color: #FFE142;
-  border-radius:50px;
-  padding:3%;
+  background-color: #ffe142;
+  border-radius: 50px;
+  padding: 3%;
 }
-.meta-p{
-  margin-left:10px;
+.meta-p {
+  margin-left: 10px;
 }
 .card-title {
   font-size: 95px;
@@ -59,63 +59,63 @@
   width: 300px;
   border: 1px solid #aab5f1;
   border-radius: 4px;
-  transition: all 0.3s ease-in-out
+  transition: all 0.3s ease-in-out;
 }
 
-.card-img:hover::before{
-  right:15%;
-  top:5%;
-  transition: all 0.3s linear
+.card-img:hover::before {
+  right: 15%;
+  top: 5%;
+  transition: all 0.3s linear;
 }
-.card-right-container{
+.card-right-container {
   display: flex;
 }
-.card-genre{
-  padding-top:5%;
-  padding-left:5%;
-  font-weight:bold;
+.card-genre {
+  padding-top: 5%;
+  padding-left: 5%;
+  font-weight: bold;
 }
 
-.card-genre::before{
+.card-genre::before {
   content: "";
   position: absolute;
   z-index: -1;
   height: 50px;
   width: 50px;
-  background-color: #FFE142;
+  background-color: #ffe142;
   border-radius: 4px;
   transition: all 0.2s ease-in-out;
-  margin-left:-1.5%;
-  margin-top:-1%;
+  margin-left: -1.5%;
+  margin-top: -1%;
 }
 
-.card-img:hover ~ .card-genre::before{
-  width:80px;
+.card-img:hover ~ .card-genre::before {
+  width: 80px;
 }
-.card-btn{
-  width:fit-content;
+.card-btn {
+  width: fit-content;
 }
-.card-btn::before{
+.card-btn::before {
   content: "";
-  background-color:#FFE142;
-  width:55px;
-  height:55px;
+  background-color: #ffe142;
+  width: 55px;
+  height: 55px;
   position: absolute;
   z-index: -1;
   margin-top: -1.2%;
-  margin-left:-1.5%;
-  border-radius:50%;
-   transition: all 0.2s ease-in-out;
-}
-
-.card-btn:hover::before{
-  width:180px;
-  border-radius:50px;
+  margin-left: -1.5%;
+  border-radius: 50%;
   transition: all 0.2s ease-in-out;
 }
-.card-btn a{
+
+.card-btn:hover::before {
+  width: 180px;
+  border-radius: 50px;
+  transition: all 0.2s ease-in-out;
+}
+.card-btn a {
   text-decoration: none;
-  color:black;
+  color: black;
   font-weight: bold;
   display: flex;
   justify-content: space-between;

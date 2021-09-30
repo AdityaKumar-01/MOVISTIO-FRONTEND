@@ -2,15 +2,15 @@
   font-family: "Nunito", sans-serif;
   box-sizing: border-box;
   margin: 0;
-  padding:0;
+  padding: 0;
 }
-html{
+html {
   scroll-behavior: smooth;
 }
 .homepage-container {
   background-color: rgb(233, 248, 246);
   overflow-x: hidden;
-  width:100%;
+  width: 100%;
 }
 .homepage-carousel-container::before {
   content: "MOVISTIO";
@@ -45,38 +45,38 @@ html{
 .homepage-desc {
   width: 100%;
   text-align: center;
-  margin:3%;
+  margin: 3%;
 }
-.movie-carousel{
-  margin-left:5%;
+.movie-carousel {
+  margin-left: 5%;
 }
 
-.genre-option{
+.genre-option {
   display: flex;
-  width:100%;
+  width: 100%;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   padding: 0 5%;
 }
-.genre-btn{
+.genre-btn {
   font-weight: bold;
   width: fit-content;
-  padding:1%;
-  margin:1%;
+  padding: 1%;
+  margin: 1%;
   border-radius: 50px;
   text-transform: uppercase;
-  color:black;
+  color: black;
   text-decoration: none;
   background-color: #fcd200;
   transition: all 0.5s;
 }
 
-.genre-btn:nth-of-type(even){
-  background-color: #FFE142;
+.genre-btn:nth-of-type(even) {
+  background-color: #ffe142;
 }
 
-.genre-btn:hover{
+.genre-btn:hover {
   box-shadow: 0 0 10px #968326;
   transition: all 0.5s;
 }

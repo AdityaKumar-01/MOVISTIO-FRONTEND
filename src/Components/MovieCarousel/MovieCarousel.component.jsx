@@ -1,10 +1,12 @@
 import React from "react";
+
 import EventIcon from "@material-ui/icons/Event";
+
 import { Slide } from "pure-react-carousel";
 
 import "./MovieCarousel.styles.css";
+
 const MovieCarousel = ({ data }) => {
-  
   const mapIdToName = (id) => {
     const genList = {
       28: "Action",
@@ -27,7 +29,7 @@ const MovieCarousel = ({ data }) => {
       10752: "War",
       37: "Western",
     };
-    return(genList[id]);
+    return genList[id];
   };
   return (
     <Slide>

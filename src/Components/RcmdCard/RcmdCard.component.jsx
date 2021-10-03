@@ -39,7 +39,6 @@ const RcmdCard = ({ name }) => {
     axios
       .request(option)
       .then((response) => {
-        console.log(response);
         setData(response.data.results[0]);
       })
       .catch((error) => console.log(error));
@@ -59,15 +58,15 @@ const RcmdCard = ({ name }) => {
           </span>
           <span className="genre-card-data">
             <span className="genre-card-meta">
-              <LocalMoviesIcon color={"black"} />{" "}
+              <LocalMoviesIcon />
               <p className="genre-card-p">{ids[data.genre_ids[0]]}</p>
             </span>
             <span className="genre-card-meta">
-              <EventIcon color={"black"} />{" "}
+              <EventIcon />
               <p className="genre-card-p">{data.release_date.split("-")[0]}</p>
             </span>
             <span className="genre-card-meta">
-              <StarsIcon color={"black"} />{" "}
+              <StarsIcon />
               <p className="genre-card-p">{data.vote_average}/10</p>
             </span>
           </span>

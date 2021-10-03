@@ -13,13 +13,15 @@ import RcmdCard from "./../../Components/RcmdCard/RcmdCard.component";
 import LoaderPage from "./../LoaderPage/LoaderPage";
 
 import "./MoviesPage.styles.css";
+import ReviewCard from "./../../Components/ReviewCard/ReviewCard.component";
 
 const MoviesPage = () => {
   let { name } = useParams();
   const [data, currentData] = useState();
   const [cast, setCast] = useState([]);
   const [rcmd, setRcmd] = useState([]);
-  const [loader, setLoader] = useState(true);
+  const [loader, setLoader] = useState(false);
+  const [reviews, setReviews] = useState([]);
   const [ids, setIds] = useState({
     28: "Action",
     12: "Adventure",
@@ -49,7 +51,6 @@ const MoviesPage = () => {
       };
       const movie = await axios.request(option);
       currentData(movie.data.results[0]);
-
       let gens = [];
       movie.data.results[0].genre_ids.forEach((id) => gens.push(ids[id]));
       let info = {
@@ -89,7 +90,32 @@ const MoviesPage = () => {
         status: 200,
       };
     };
+    const getReviews = async (id) => {
+      var option = {
+        method: "GET",
+        url: `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}`,
+      };
+      const reviews = await axios.request(option);
+      console.log(reviews.data.imdb_id);
+      return {
+        status: 200,
+        id: reviews.data.imdb_id,
+      };
+    };
 
+    const getFilterReviews = async (id) => {
+      const option = {
+        method: "POST",
+        url: `http://localhost:5000/filterReviews`,
+        data: { id },
+      };
+      const reviews = await axios.request(option);
+      setReviews(reviews.data.data);
+      return {
+        status: 200,
+        data: reviews.data,
+      };
+    };
     const getData = async () => {
       let movieStatus = await getMovieData();
 
@@ -98,6 +124,9 @@ const MoviesPage = () => {
         movieStatus.data.genres,
         castStatus.data
       );
+      let reviewStatus = await getReviews(movieStatus.data.id);
+      console.log(reviewStatus);
+      let filterReviews = await getFilterReviews(reviewStatus.id);
       setLoader(false);
     };
     console.log(name);
@@ -170,6 +199,11 @@ const MoviesPage = () => {
                 })
               : null}
           </div>
+          {reviews
+            ? reviews.map((review) => {
+                return <ReviewCard str={review[0]} status={review[1]} />;
+              })
+            : null}
           <Footer />
         </div>
       )}

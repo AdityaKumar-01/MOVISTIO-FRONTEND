@@ -78,7 +78,6 @@ const MoviesPage = () => {
     };
 
     const getRecommendations = async (data, cast) => {
-      console.log(data);
       const option = {
         method: "POST",
         url: "http://localhost:5000/getRecommendations",
@@ -96,7 +95,6 @@ const MoviesPage = () => {
         url: `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}`,
       };
       const reviews = await axios.request(option);
-      console.log(reviews.data.imdb_id);
       return {
         status: 200,
         id: reviews.data.imdb_id,
@@ -125,11 +123,10 @@ const MoviesPage = () => {
         castStatus.data
       );
       let reviewStatus = await getReviews(movieStatus.data.id);
-      console.log(reviewStatus);
       let filterReviews = await getFilterReviews(reviewStatus.id);
       setLoader(false);
     };
-    console.log(name);
+    
     getData();
   }, [name]);
 

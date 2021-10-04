@@ -19,9 +19,13 @@
   display: flex;
   align-items: center;
 }
-.cast-btn a {
+.genre-card-btn button {
   text-decoration: none;
   color: black;
+  outline: none;
+  border:none;
+  background-color:transparent;
+  cursor: pointer;
 }
 
 .cast-detail-holder {

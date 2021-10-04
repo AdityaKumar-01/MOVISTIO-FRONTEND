@@ -8,6 +8,7 @@ import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import "./GenreCard.styles.css";
 
 const GenreCard = ({ data }) => {
+  
   return (
     <div className="genre-card-container">
       <span className="genre-card-img">
@@ -23,7 +24,11 @@ const GenreCard = ({ data }) => {
         </span>
         <span className="genre-card-meta">
           <EventIcon color={"black"} />{" "}
-          <p className="genre-card-p">{data.release_date.split("-")[0]}</p>
+          {data.release_date ? (
+            <p className="genre-card-p">{data.release_date.split("-")[0]}</p>
+          ) : (
+           null
+          )}
         </span>
         <span className="genre-card-meta">
           <StarsIcon color={"black"} />{" "}

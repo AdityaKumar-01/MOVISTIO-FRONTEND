@@ -70,6 +70,7 @@ const MoviesPage = () => {
         url: `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.REACT_APP_API_KEY}`,
       };
       const cast = await axios.request(option);
+      
       setCast(cast.data.cast.slice(0, 11));
       return {
         status: 200,

@@ -10,7 +10,7 @@
 .header-buttons {
   display: flex;
   justify-content: space-evenly;
-  width: 60%;
+  width: 65%;
   padding-top: 1%;
   align-items: center;
   height: 50px;
@@ -43,4 +43,23 @@
   padding: 1%;
   font-size: 20px;
   cursor: pointer;
+}
+.dropdown-container{
+  display: flex;
+  flex-direction: column;
+  align-items:flex-start;
+  justify-content: center;
+  width:130px;
+  height:130px;
+  padding: 20px;
+}
+.dropdown-item{
+  display: flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:10px 0;
+}
+
+.dropdown-item:hover{
+  cursor:pointer;
 }

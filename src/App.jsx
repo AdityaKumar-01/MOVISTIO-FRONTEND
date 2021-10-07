@@ -5,6 +5,8 @@ import HomePage from "./Pages/HomePage/HomePage";
 import MoviesPage from "./Pages/MoviesPage/MoviesPage";
 import GenresPage from "./Pages/GenresPage/GenresPage";
 import LoginForm from './Components/LoginForm/LoginForm.component';
+import RatingsPage from './Pages/RatingsPage/RatingsPage';
+import HistoryPage from './Pages/HistoryPage/HistoryPage';
 
 const App = () => {
   return (
@@ -14,6 +16,8 @@ const App = () => {
         <Route path="/movies/:name" component={MoviesPage} />
         <Route path="/genres/:id/:name" component={GenresPage} />
         <Route path="/auth" component={LoginForm} />
+        <Route path="/history" component={HistoryPage} />
+        <Route path="/ratings" component={RatingsPage} />
       </Switch>
     </BrowserRouter>
   );

@@ -107,7 +107,7 @@ const Header = () => {
                 <AccessTimeFilledIcon fontSize="medium" />
                 <p
                   style={{ fontWeight: "bold", paddingLeft: "10px",pointer:"cursor" }}
-                  onClick={() => history.push("/")}
+                  onClick={() => history.push("/history")}
                 >
                   History
                 </p>
@@ -116,7 +116,7 @@ const Header = () => {
                 <GradeIcon fontSize="medium" />
                 <p
                   style={{ fontWeight: "bold", paddingLeft: "10px",pointer:"cursor" }}
-                  onClick={() => history.push("/")}
+                  onClick={() => history.push("/ratings")}
                 >
                   Ratings
                 </p>

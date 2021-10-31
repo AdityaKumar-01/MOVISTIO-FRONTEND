@@ -1,22 +1,24 @@
 import LoginIcon from "@mui/icons-material/Login";
-import axios from "axios";
 
 import { Formik, Field, Form } from "formik";
+import axios from "axios";
 
-const LoginForm = () => {
+const SignUpForm = () => {
   return (
     <Formik
       initialValues={{
         username: "",
         password: "",
+        confirmPassword: "",
       }}
       onSubmit={async (values) => {
         let data = {
           username: values["username"],
           password: values["password"],
+          confirmPassword: values["confirmPassword"],
         };
         var options = {
-          url: `${process.env.REACT_APP_TS_SERVER}/api/login-user`,
+          url: `${process.env.REACT_APP_TS_SERVER}/api/create-user`,
           method: "POST",
           data: data,
         };
@@ -30,11 +32,28 @@ const LoginForm = () => {
     >
       <Form className="form-inputs">
         <span>Username</span>
-        <Field type="text" name="username" placeholder="Enter Username" />
+        <Field
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Enter Username"
+        />
         <span>Password</span>
-        <Field type="password" name="password" placeholder="Enter Password" />
+        <Field
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Enter Password"
+        />
+        <span>Confirm Password</span>
+        <Field
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          placeholder="Enter Password Again"
+        />
         <button>
-          <p>Login</p>
+          <p>Sign Up</p>
           <LoginIcon />
         </button>
       </Form>
@@ -42,4 +61,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default SignUpForm;

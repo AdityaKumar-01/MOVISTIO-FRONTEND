@@ -116,7 +116,11 @@ const Header = () => {
                 <GradeIcon fontSize="medium" />
                 <p
                   style={{ fontWeight: "bold", paddingLeft: "10px",pointer:"cursor" }}
-                  onClick={() => history.push("/ratings")}
+                  onClick={() => {
+                    localStorage.getItem("userName") === null
+                      ? history.push("/auth")
+                      : history.push("/ratings");
+                    }}
                 >
                   Ratings
                 </p>

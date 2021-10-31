@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import LoginIcon from "@mui/icons-material/Login";
+import loginPic from "../../Assets/login.png";
+import "./LoginForm.styles.css"
 const LoginForm = () => {
   const [isLogin, setLogin] = useState(true);
 
@@ -8,15 +10,24 @@ const LoginForm = () => {
   };
   return (
     <div className="form-container">
-      <div>
-        <span></span>
-        <div>
-          <span>
-            <span onClick={() => toggleForm(true)}>Login</span>
-            <span onClick={() => toggleForm(false)}>Sign Up</span>
+      <div className="form-content">
+        <div className="form-left-panel">
+          <span className="form-toggle-option">
+            <span
+              onClick={() => toggleForm(true)}
+              className={isLogin ? "selected-option" : ""}
+            >
+              Login
+            </span>
+            <span
+              onClick={() => toggleForm(false)}
+              className={!isLogin ? "selected-option" : ""}
+            >
+              Sign Up
+            </span>
           </span>
           {isLogin ? (
-            <div>
+            <div className="form-inputs">
               <span>UserName</span>
               <input type="text" placeholder="Enter Username" />
               <span>Password</span>
@@ -27,7 +38,7 @@ const LoginForm = () => {
               </button>
             </div>
           ) : (
-            <div>
+            <div className="form-inputs">
               <span>UserName</span>
               <input type="text" placeholder="Enter Username" />
               <span>Password</span>
@@ -41,6 +52,10 @@ const LoginForm = () => {
             </div>
           )}
         </div>
+
+        <span className="form-panel">
+          <img src={loginPic} alt="img" />
+        </span>
       </div>
     </div>
   );

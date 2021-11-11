@@ -106,8 +106,16 @@ const Header = () => {
               <span className="dropdown-item">
                 <AccessTimeFilledIcon fontSize="medium" />
                 <p
-                  style={{ fontWeight: "bold", paddingLeft: "10px",pointer:"cursor" }}
-                  onClick={() => history.push("/history")}
+                  style={{
+                    fontWeight: "bold",
+                    paddingLeft: "10px",
+                    pointer: "cursor",
+                  }}
+                  onClick={() => {
+                    localStorage.getItem("username") === null
+                      ? history.push("/auth")
+                      : history.push("/history");
+                  }}
                 >
                   History
                 </p>
@@ -115,8 +123,16 @@ const Header = () => {
               <span className="dropdown-item">
                 <GradeIcon fontSize="medium" />
                 <p
-                  style={{ fontWeight: "bold", paddingLeft: "10px",pointer:"cursor" }}
-                  onClick={() => history.push("/ratings")}
+                  style={{
+                    fontWeight: "bold",
+                    paddingLeft: "10px",
+                    pointer: "cursor",
+                  }}
+                  onClick={() => {
+                    localStorage.getItem("username") === null
+                      ? history.push("/auth")
+                      : history.push("/ratings");
+                  }}
                 >
                   Ratings
                 </p>
@@ -127,7 +143,11 @@ const Header = () => {
                   onClick={() => history.push("/auth")}
                 />
                 <p
-                  style={{ fontWeight: "bold", paddingLeft: "10px",pointer:"cursor" }}
+                  style={{
+                    fontWeight: "bold",
+                    paddingLeft: "10px",
+                    pointer: "cursor",
+                  }}
                   onClick={() => history.push("/auth")}
                 >
                   Login

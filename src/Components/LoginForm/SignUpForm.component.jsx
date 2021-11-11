@@ -1,11 +1,10 @@
 import LoginIcon from "@mui/icons-material/Login";
-import axios from "axios";
-import { useHistory } from "react-router-dom";
-
-import { Formik, Field, Form } from "formik";
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { Formik, Field, Form } from "formik";
+import axios from "axios";
 
-const LoginForm = () => {
+const SignUpForm = () => {
   let history = useHistory();
   const [err, setError] = useState("");
   return (
@@ -13,43 +12,58 @@ const LoginForm = () => {
       initialValues={{
         username: "",
         password: "",
+        confirmPassword: "",
       }}
       onSubmit={async (values) => {
         let data = {
           username: values["username"],
           password: values["password"],
+          confirmPassword: values["confirmPassword"],
         };
         var options = {
-          url: `${process.env.REACT_APP_EXPRESS_SERVER}/api/login-user`,
+          url: `${process.env.REACT_APP_EXPRESS_SERVER}/api/create-user`,
           method: "POST",
           data: data,
         };
         axios
           .request(options)
           .then((res) => {
-            console.log(res);
-            if (res.data.status == 404) setError(res.data.msg);
-            else {
-              localStorage.setItem("username", values["username"]);
-              history.push("/");
+            if(res.data.status==409)
+              setError(res.data.msg)
+            else{
+              localStorage.setItem("username",values["username"])
+              history.push("/")
             }
           })
           .catch((err) => console.log(err));
       }}
     >
       <Form className="form-inputs">
-        {err ? <span>{err}</span> : null}
+      {err ? <span>{err}</span>: null}
         <span>Username</span>
         <Field
           type="text"
+          id="username"
           name="username"
           placeholder="Enter Username"
           autoComplete="off"
         />
         <span>Password</span>
-        <Field type="password" name="password" placeholder="Enter Password" />
-        <button type="submit">
-          <p>Login</p>
+        <Field
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Enter Password"
+        />
+        <span>Confirm Password</span>
+        <Field
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          placeholder="Enter Password Again"
+        />
+        <button>
+          <p>Sign Up</p>
           <LoginIcon />
         </button>
       </Form>
@@ -57,4 +71,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default SignUpForm;

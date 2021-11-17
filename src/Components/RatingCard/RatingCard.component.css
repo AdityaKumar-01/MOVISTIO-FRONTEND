@@ -1,0 +1,42 @@
+.main-container1{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 100%;
+    padding-top: 1.2rem;
+}
+.card-container1{
+    height:15rem;
+    width: 30rem;
+    margin: 3rem;
+    padding: 0px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-radius: 0.5rem;
+    box-shadow: 5px 5px 5px  #aaaaaa;
+}
+.card-container1:hover{
+    
+}
+.card-left-container1{
+    height: 15rem;
+    width: 15rem;
+}
+.card-left-container1 .img-component{
+    height: 15rem;
+    width: 15rem;
+    margin: 0px;
+    border-radius: 0.5rem 0 0 0.5rem ;
+}   
+.card-right-container1{
+    width: 15rem;
+    background-color: #ffe142;
+    height: 15rem;
+    border-radius: 0rem 0.5rem 0.5rem 0;
+    display: flex;
+    justify-content: center;
+    padding: 3rem 0;
+    overflow: hidden;
+}

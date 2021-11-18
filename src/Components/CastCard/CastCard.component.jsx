@@ -26,7 +26,6 @@ const handleToggle = () => {
       };
 
       const castDetails = await axios.request(options);
-      console.log(castDetails.data);
       setDetail(castDetails.data);
     };
 

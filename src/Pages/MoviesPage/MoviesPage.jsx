@@ -81,7 +81,7 @@ const MoviesPage = () => {
     const getRecommendations = async (data, cast) => {
       const option = {
         method: "POST",
-        url: "http://localhost:5000/getRecommendations",
+        url: `${process.env.REACT_APP_FLASK_SERVER}/getRecommendations`,
         data: { cast: cast, movie: data },
       };
       const recommendations = await axios.request(option);
@@ -93,20 +93,24 @@ const MoviesPage = () => {
     const getReviews = async (id) => {
       var option = {
         method: "GET",
-        url: `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}`,
+        url: `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`,
       };
       const reviews = await axios.request(option);
+      // console.log(reviews.data.results)
+      const reviewList = []
+      reviews.data.results.forEach(obj => reviewList.push(obj.content))
+      console.log(reviewList)
       return {
         status: 200,
-        id: reviews.data.imdb_id,
+        data: reviewList,
       };
     };
 
-    const getFilterReviews = async (id) => {
+    const getFilterReviews = async (data) => {
       const option = {
         method: "POST",
-        url: `http://localhost:5000/filterReviews`,
-        data: { id },
+        url: `${process.env.REACT_APP_FLASK_SERVER}/filterReviews`,
+        data: data,
       };
       const reviews = await axios.request(option);
       setReviews(reviews.data.data);
@@ -124,7 +128,7 @@ const MoviesPage = () => {
         castStatus.data
       );
       let reviewStatus = await getReviews(movieStatus.data.id);
-      let filterReviews = await getFilterReviews(reviewStatus.id);
+      let filterReviews = await getFilterReviews(reviewStatus.data);
       setLoader(false);
     };
     
@@ -161,10 +165,10 @@ const MoviesPage = () => {
                     </p>
                     <CircularProgressbar
                       className="prog-bar"
-                      value={data.vote_average}
-                      maxValue={10}
+                      value={data.vote_average/2}
+                      maxValue={5}
                       minValue={0}
-                      text={data.vote_average}
+                      text={data.vote_average/2}
                       styles={buildStyles({
                         pathColor: "#FFE142",
                         textColor: "#FFE142",

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 
 import axios from "axios";
 import Header from "../../Components/Header/Header.component";
-import Rating from "../../Components/RatingCard/RatingCard.component"
-
-const RatingsPage = ({id}) => {
+import RatingCard from './../../Components/RatingCard/RatingCard.component';
+import "./RatingsPage.styles.css"
+const RatingsPage = () => {
     const [data, setData] = useState(null);
   
     const getRatingDetails = () => {
@@ -28,9 +28,11 @@ const RatingsPage = ({id}) => {
     return (
         <div>
             <Header />
-            <div className="main-container1">
+            <div className="rating-page-container">
               {data ? (
-                  data.map(obj => {return <Rating movieName={obj.movieName} rating={obj.rating}/>})
+                  data.map(obj => {return (
+                    <RatingCard movieName={obj.movieName} rating={obj.rating} />
+                  );})
               ):("null")} 
             </div>
            

@@ -1,42 +1,43 @@
-.main-container1{
+.rating-card{
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    width: 100%;
-    padding-top: 1.2rem;
+    border-radius: 5px;
+    background-color: #FFE142;
+    max-width: 400px;
+    justify-content: space-around;
+    height: auto;
 }
-.card-container1{
-    height:15rem;
-    width: 30rem;
-    margin: 3rem;
-    padding: 0px;
+.rating-card-right{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 15px;
+}
+.rating-card-left{
+    display: flex;
+    align-items: center;
+}
+.rating-card-img{
+    width: 180px;
+    height: 250px;
+    border-radius: 5px 0 0 5px;
+}
+
+.rating-card-title{
+    font-weight: bold;
+    font-size: 23px;
+    margin-bottom: 10px;
+}
+.genres-container{
     display: flex;
     justify-content: flex-start;
-    align-items: flex-start;
-    border-radius: 0.5rem;
-    box-shadow: 5px 5px 5px  #aaaaaa;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
 }
-.card-container1:hover{
-    
-}
-.card-left-container1{
-    height: 15rem;
-    width: 15rem;
-}
-.card-left-container1 .img-component{
-    height: 15rem;
-    width: 15rem;
-    margin: 0px;
-    border-radius: 0.5rem 0 0 0.5rem ;
-}   
-.card-right-container1{
-    width: 15rem;
-    background-color: #ffe142;
-    height: 15rem;
-    border-radius: 0rem 0.5rem 0.5rem 0;
-    display: flex;
-    justify-content: center;
-    padding: 3rem 0;
-    overflow: hidden;
+.rating-genre-chip{
+    border:1.5px solid black;
+    border-radius: 50px;
+    margin: 10px 5px;
+    padding: 3px;
 }

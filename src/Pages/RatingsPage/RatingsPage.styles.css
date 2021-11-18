@@ -1,0 +1,8 @@
+.rating-page-container{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: center;
+    padding: 3%;
+}

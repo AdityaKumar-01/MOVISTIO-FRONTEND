@@ -3,7 +3,9 @@ import { useParams } from "react-router-dom";
 
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+
 import axios from "axios";
+
 import EventIcon from "@material-ui/icons/Event";
 
 import Header from "./../../Components/Header/Header.component";
@@ -14,6 +16,13 @@ import LoaderPage from "./../LoaderPage/LoaderPage";
 
 import "./MoviesPage.styles.css";
 import ReviewCard from "./../../Components/ReviewCard/ReviewCard.component";
+import StarsRating from "stars-rating";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const MoviesPage = () => {
   let { name } = useParams();
@@ -70,7 +79,7 @@ const MoviesPage = () => {
         url: `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.REACT_APP_API_KEY}`,
       };
       const cast = await axios.request(option);
-      
+
       setCast(cast.data.cast.slice(0, 11));
       return {
         status: 200,
@@ -97,9 +106,9 @@ const MoviesPage = () => {
       };
       const reviews = await axios.request(option);
       // console.log(reviews.data.results)
-      const reviewList = []
-      reviews.data.results.forEach(obj => reviewList.push(obj.content))
-      console.log(reviewList)
+      const reviewList = [];
+      reviews.data.results.forEach((obj) => reviewList.push(obj.content));
+      console.log(reviewList);
       return {
         status: 200,
         data: reviewList,
@@ -131,10 +140,37 @@ const MoviesPage = () => {
       let filterReviews = await getFilterReviews(reviewStatus.data);
       setLoader(false);
     };
-    
+
     getData();
   }, [name]);
 
+  const ratingChanged = (newRating) => {
+    const options = {
+      method: "POST",
+      url: `${process.env.REACT_APP_EXPRESS_SERVER}/api/post-rating`,
+      data: {
+        username: localStorage.getItem("username"),
+        ratings: [{ movieName: data.title, rating: newRating }],
+      },
+    };
+    axios.request(options).then((data) => {
+      console.log(data);
+      handleClick();
+    });
+  };
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
   return (
     <>
       {loader ? (
@@ -165,10 +201,10 @@ const MoviesPage = () => {
                     </p>
                     <CircularProgressbar
                       className="prog-bar"
-                      value={data.vote_average/2}
+                      value={data.vote_average / 2}
                       maxValue={5}
                       minValue={0}
-                      text={data.vote_average/2}
+                      text={data.vote_average / 2}
                       styles={buildStyles({
                         pathColor: "#FFE142",
                         textColor: "#FFE142",
@@ -176,6 +212,25 @@ const MoviesPage = () => {
                       })}
                     />
                   </span>
+                  <StarsRating
+                    count={5}
+                    onChange={ratingChanged}
+                    size={35}
+                    color2={"#ffe142"}
+                  />
+                  <Snackbar
+                    open={open}
+                    autoHideDuration={3000}
+                    onClose={handleClose}
+                  >
+                    <Alert
+                      onClose={handleClose}
+                      severity="success"
+                      sx={{ width: "100%" }}
+                    >
+                      Rating posted in your history!
+                    </Alert>
+                  </Snackbar>
                 </span>
               </div>
             </div>

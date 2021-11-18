@@ -30,7 +30,7 @@ const RatingsPage = () => {
             <Header />
             <div className="rating-page-container">
               {data ? (
-                  data.map(obj => {return (
+                  data.reverse().map(obj => {return (
                     <RatingCard movieName={obj.movieName} rating={obj.rating} />
                   );})
               ):("null")} 

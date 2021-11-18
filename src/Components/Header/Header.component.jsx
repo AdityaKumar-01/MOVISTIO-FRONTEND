@@ -7,8 +7,6 @@ import SearchIcon from "@material-ui/icons/Search";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Box from "@mui/material/Box";
 import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import GradeIcon from "@mui/icons-material/Grade";
 import Tooltip from "@mui/material/Tooltip";
@@ -17,6 +15,9 @@ import LoginIcon from "@mui/icons-material/Login";
 import SearchBar from "./../SearchBar/SearchBar.component";
 
 import "./Header.styles.css";
+
+import axios from "axios";
+
 const Header = () => {
   let history = useHistory();
   const [value, setValue] = useState();
@@ -31,7 +32,31 @@ const Header = () => {
   };
 
   const handleSearch = () => {
-    if (value) history.push(`/movies/${value}`);
+    if (value) {
+      const options = {
+        method: "POST",
+        url: `${process.env.REACT_APP_EXPRESS_SERVER}/api/post-history`,
+        data: {
+          username: localStorage.getItem("username"),
+          searches: [{ movieName: value, at: getCurrentDate() }],
+        },
+      };
+      axios.request(options).then((data) => {
+        console.log(data);
+        history.push(`/movies/${value}`);
+      });
+    }
+  };
+  const getCurrentDate = () => {
+    let newDate = new Date();
+    let date = newDate.getDate();
+    let month = newDate.getMonth() + 1;
+    let year = newDate.getFullYear();
+    let hr = newDate.getHours();
+    let min = newDate.getMinutes();
+    return `${year}-${
+      month < 10 ? `0${month}` : `${month}`
+    }-${date} ${hr}:${min}`;
   };
   return (
     <div className="header-wrapper">
